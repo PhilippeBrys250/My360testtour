@@ -75,7 +75,49 @@
 <script src="vendor/screenfull.min.js" ></script>
 <script src="vendor/bowser.min.js" ></script>
 <script src="vendor/marzipano.js" ></script>
+<audio id="bgmusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
+<button id="musicBtn"
+style="
+position:fixed;
+top:20px;
+right:20px;
+z-index:9999;
+background:white;
+border:none;
+padding:8px;
+border-radius:8px;
+cursor:pointer;">
+🎵
+</button>
+
+<script>
+const music = document.getElementById("bgmusic");
+const btn = document.getElementById("musicBtn");
+
+function startMusic() {
+    music.volume = 0.3;
+    music.play().catch(() => {});
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("touchstart", startMusic);
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+
+btn.onclick = function () {
+    if (music.paused) {
+        music.play();
+        btn.textContent = "🔊";
+    } else {
+        music.pause();
+        btn.textContent = "🔇";
+    }
+};
+</script>
+  
 <script src="data.js"></script>
 <script src="index.js"></script>
 
