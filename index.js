@@ -14,18 +14,6 @@
  * limitations under the License.
  */
 'use strict';
-// Background music
-const music = document.getElementById("bgmusic");
-let musicStarted = false;
-
-function startMusic() {
-  if (musicStarted) return;
-  musicStarted = true;
-
-  music.volume = 0.3;
-  music.play().catch(err => console.log(err));
-}
-
 (function() {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
@@ -80,9 +68,6 @@ function startMusic() {
 
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
-
-  // Start music when the visitor first interacts with the panorama
-  panoElement.addEventListener("pointerdown", startMusic, { once: true });
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
     var urlPrefix = "tiles";
