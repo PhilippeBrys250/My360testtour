@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 'use strict';
-
 (function() {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
@@ -69,6 +68,23 @@
 
   // Initialize viewer.
   var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
+  // Create scenes.
+  var scenes = data.scenes.map(function(data) {
+    var urlPrefix = "tiles";
+    var source = Marzipano.ImageUrlSource.fromString(
+      urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg",
+      { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
+    var geometry = new Marzipano.CubeGeometry(data.levels);
+
+    var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
+    var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
+
+    var scene = viewer.createScene({
+      source: source,
+      geometry: geometry,
+      view: view,
+      pinFirstLevel: true
+    });
 
     // Create link hotspots.
     data.linkHotspots.forEach(function(hotspot) {
