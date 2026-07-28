@@ -74,63 +74,6 @@
 <audio id="bgmusic" loop preload="auto">
   <source src="music.mp3" type="audio/mpeg">
 </audio>
-
-<button id="musicBtn" type="button"
-  style="
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 2147483647;
-    width: 52px;
-    height: 52px;
-    border: 0;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.95);
-    color: #111;
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  "
-  aria-label="Toggle music">
-  🎵
-</button>
-
-<script>
-  const music = document.getElementById("bgmusic");
-  const btn = document.getElementById("musicBtn");
-  let started = false;
-
-  async function startMusic() {
-    if (started) return;
-    started = true;
-    try {
-      music.volume = 0.3;
-      await music.play();
-      btn.textContent = "🔊";
-    } catch (err) {
-      started = false;
-      console.error("Audio failed to start:", err);
-    }
-  }
-
-  btn.addEventListener("click", async () => {
-    try {
-      if (music.paused) {
-        await music.play();
-        btn.textContent = "🔊";
-      } else {
-        music.pause();
-        btn.textContent = "🎵";
-      }
-    } catch (err) {
-      console.error("Toggle failed:", err);
-    }
-  });
-
-  document.addEventListener("click", startMusic, { once: true });
-  document.addEventListener("touchstart", startMusic, { once: true });
-</script>
     
 <script src="data.js"></script>
 <script src="index.js"></script>
