@@ -14,17 +14,6 @@
  * limitations under the License.
  */
 'use strict';
-// Background music
-const music = document.getElementById("bgmusic");
-let musicStarted = false;
-
-function startMusic() {
-  if (musicStarted) return;
-  musicStarted = true;
-
-  music.volume = 0.3;
-  music.play().catch(err => console.log(err));
-}
 
 (function() {
   var Marzipano = window.Marzipano;
