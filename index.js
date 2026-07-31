@@ -15,6 +15,8 @@
  */
 'use strict';
 
+const MUSIC_VOLUME = 0.3;
+
 // Background music
 const music = document.getElementById("bgmusic");
 let musicStarted = false;
@@ -22,7 +24,7 @@ let musicStarted = false;
 function startMusic() {
   if (!music || musicStarted) return;
   musicStarted = true;
-  music.volume = 0.3;
+  music.volume = MUSIC_VOLUME;
   const playPromise = music.play();
   if (playPromise) playPromise.catch(err => console.log("Unable to play music:", err));
 }
