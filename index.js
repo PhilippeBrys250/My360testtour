@@ -97,7 +97,7 @@ function startMusicOnce() {
   document.addEventListener("touchstart", startMusicOnce, true);
   // Create scenes.
   var scenes = data.scenes.map(function(data) {
-    var urlPrefix = "https://pub-7268977fd475446d9dfcc4160cd70e74.r2.dev/tiles";
+    var urlPrefix = "tiles";
     var source = Marzipano.ImageUrlSource.fromString(
       urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg",
       { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
